@@ -2,460 +2,319 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>B.M.Alaa | G.3.0.5 ULTIMATE SYSTEM</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Orbitron:wght@400;600;800;900&family=Fira+Code:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ MATRIX CHAT // SECURE_LINE</title>
     <style>
-        /* --- الأساسيات والمتغيرات (The Core Logic) --- */
         :root {
-            --primary: #00f2ff;
-            --primary-glow: rgba(0, 242, 255, 0.5);
-            --accent: #ff0055;
-            --bg-dark: #050507;
-            --card-bg: rgba(255, 255, 255, 0.02);
-            --glass-border: rgba(0, 242, 255, 0.15);
-            --font-main: 'Cairo', sans-serif;
-            --font-tech: 'Orbitron', sans-serif;
-            --font-code: 'Fira Code', monospace;
-            --transition-slow: 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-fast: 0.3s ease;
-        }
-
-        /* نظام التغيير الآلي للون (Red Team Activation) */
-        body.red-mode {
-            --primary: #ff0055;
-            --primary-glow: rgba(255, 0, 85, 0.6);
-            --glass-border: rgba(255, 0, 85, 0.25);
+            --bg-dark: #06070d;
+            --panel-bg: rgba(14, 16, 27, 0.85);
+            --neon-cyan: #00f3ff;
+            --neon-green: #39ff14;
+            --neon-magenta: #ff0055;
+            --text-main: #f1f5f9;
+            --text-muted: #475569;
+            --border-glow: rgba(0, 243, 255, 0.2);
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            outline: none;
-            -webkit-tap-highlight-color: transparent;
+            font-family: 'Courier New', Courier, 'Segoe UI', Tahoma, sans-serif;
         }
 
         body {
             background-color: var(--bg-dark);
-            color: #ffffff;
-            font-family: var(--font-main);
-            overflow-x: hidden;
-            line-height: 1.6;
-            transition: background 1s ease;
-        }
-
-        /* --- خلفية الماتريكس والجسيمات --- */
-        #cyber-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.35;
-        }
-
-        /* --- حاوية المحتوى --- */
-        .master-wrapper {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- الهيدر (Hero Section) --- */
-        .hero-section {
-            height: 100vh;
+            background-image: 
+                linear-gradient(rgba(18, 24, 38, 0.4) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(18, 24, 38, 0.4) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--text-main);
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            position: relative;
-        }
-
-        .profile-vault {
-            position: relative;
-            width: 220px;
-            height: 220px;
-            margin-bottom: 40px;
-        }
-
-        .profile-vault::before {
-            content: '';
-            position: absolute;
-            inset: -10px;
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            border-top-color: transparent;
-            border-bottom-color: transparent;
-            animation: spin 4s linear infinite;
-            transition: var(--transition-slow);
-        }
-
-        .profile-vault::after {
-            content: '';
-            position: absolute;
-            inset: -20px;
-            border: 1px dashed var(--primary);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: spin 10s linear reverse infinite;
-        }
-
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-
-        .profile-img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--bg-dark);
-            box-shadow: 0 0 30px var(--primary-glow);
-            transition: var(--transition-slow);
-        }
-
-        .brand-name {
-            font-family: var(--font-tech);
-            font-size: clamp(2.5rem, 10vw, 6.5rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 12px;
-            background: linear-gradient(to bottom, #fff, var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px var(--primary-glow));
-            transition: var(--transition-slow);
-            margin-bottom: 15px;
-        }
-
-        .typewriter-terminal {
-            font-family: var(--font-code);
-            color: var(--primary);
-            font-size: 1.1rem;
-            min-height: 1.5em;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* --- شريط البيانات السفلي --- */
-        .data-status-bar {
-            position: absolute;
-            bottom: 40px;
-            display: flex;
-            gap: 30px;
-            opacity: 0.6;
-            font-size: 0.8rem;
-            font-family: var(--font-code);
-        }
-
-        /* --- شريط الملاحة الذكي --- */
-        .nav-anchor {
-            position: sticky;
-            top: 20px;
-            z-index: 999;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            padding: 20px 0;
-            backdrop-filter: blur(15px);
-            margin-bottom: 60px;
-        }
-
-        .nav-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--glass-border);
-            color: #fff;
-            padding: 12px 35px;
-            border-radius: 4px;
-            font-family: var(--font-tech);
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: var(--transition-fast);
-            position: relative;
+            height: 100vh;
             overflow: hidden;
         }
 
-        .nav-btn.active, .nav-btn:hover {
-            background: var(--primary);
-            color: #000;
-            border-color: var(--primary);
-            box-shadow: 0 0 20px var(--primary-glow);
-            transform: translateY(-2px);
-        }
-
-        /* --- الأقسام الملحمية --- */
-        .section-container {
-            display: none;
-            animation: sectionSlide 0.8s forwards;
-            padding-bottom: 100px;
-        }
-
-        .section-container.active { display: block; }
-
-        @keyframes sectionSlide {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- هيكلة الكروت الثلاثية --- */
-        .skills-mega-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .skill-nexus-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(0,0,0,0.4) 100%);
-            border: 1px solid var(--glass-border);
-            padding: 50px 35px;
-            border-radius: 30px;
-            text-align: center;
+        /* حاوية الدردشة الزجاجية */
+        .chat-frame {
+            width: 100%;
+            max-width: 480px;
+            height: 100vh;
+            background: var(--panel-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-left: 2px solid var(--neon-cyan);
+            border-right: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.15);
+            display: flex;
+            flex-direction: column;
             position: relative;
-            transition: var(--transition-fast);
-            cursor: crosshair;
         }
 
-        .skill-nexus-card:hover {
-            border-color: var(--primary);
-            transform: scale(1.03);
-            background: rgba(255,255,255,0.05);
+        /* الهيدر المطور */
+        .chat-header {
+            padding: 20px;
+            background: rgba(8, 9, 16, 0.9);
+            border-bottom: 2px solid rgba(0, 243, 255, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
-        .icon-hexagon {
-            width: 90px;
-            height: 90px;
-            background: var(--bg-dark);
-            border: 2px solid var(--primary);
-            margin: 0 auto 30px;
+        .system-status {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .chat-title {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.6);
+            letter-spacing: 1px;
+        }
+
+        .encryption-badge {
+            font-size: 0.7rem;
+            color: var(--neon-green);
+            text-transform: uppercase;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 2.2rem;
-            color: var(--primary);
-            transform: rotate(45deg);
-            transition: var(--transition-slow);
-            box-shadow: 0 0 15px var(--primary-glow);
+            gap: 5px;
         }
 
-        .icon-hexagon i { transform: rotate(-45deg); }
+        .encryption-badge::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--neon-green);
+            animation: blink 1.5s infinite;
+        }
 
-        .skill-nexus-card h3 {
-            font-family: var(--font-tech);
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            letter-spacing: 3px;
+        .btn-purge {
+            background: rgba(255, 0, 85, 0.1);
+            border: 1px solid var(--neon-magenta);
+            color: var(--neon-magenta);
+            padding: 8px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px var(--neon-magenta);
+        }
+
+        .btn-purge:hover {
+            background: var(--neon-magenta);
             color: #fff;
+            box-shadow: 0 0 15px var(--neon-magenta);
         }
 
-        .skill-nexus-card p {
+        /* منطقة استعراض المحادثات */
+        .display-area {
+            flex: 1;
+            padding: 25px 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .display-area::-webkit-scrollbar {
+            width: 3px;
+        }
+        .display-area::-webkit-scrollbar-thumb {
+            background: var(--neon-cyan);
+        }
+
+        /* ستايل الرسائل المشفرة */
+        .msg-bubble {
+            max-width: 80%;
+            padding: 12px 16px;
             font-size: 0.95rem;
-            color: #b0b0b0;
-            line-height: 1.8;
+            line-height: 1.5;
+            position: relative;
+            animation: slideIn 0.25s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+            border-radius: 4px;
         }
 
-        /* --- تفاصيل الكتب --- */
-        .book-layer {
-            background: var(--card-bg);
-            border-right: 4px solid var(--primary);
-            padding: 25px;
-            margin-bottom: 20px;
-            transition: var(--transition-fast);
+        .incoming {
+            background: rgba(0, 243, 255, 0.05);
+            color: var(--neon-cyan);
+            align-self: flex-start;
+            border-right: 3px solid var(--neon-cyan);
+            border-top-left-radius: 12px;
+            border-bottom-left-radius: 12px;
+            box-shadow: inset 0 0 10px rgba(0, 243, 255, 0.05);
         }
 
-        /* --- الفوتر (The End Line) --- */
-        footer {
-            padding: 80px 0;
-            text-align: center;
-            border-top: 1px solid var(--glass-border);
-            margin-top: 100px;
+        .outgoing {
+            background: rgba(57, 255, 20, 0.05);
+            color: #d1f7c4;
+            align-self: flex-end;
+            border-left: 3px solid var(--neon-green);
+            border-top-right-radius: 12px;
+            border-bottom-right-radius: 12px;
+            box-shadow: inset 0 0 10px rgba(57, 255, 20, 0.05);
         }
 
-        .footer-logo {
-            font-family: var(--font-tech);
+        .sys-log {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            align-self: center;
+            padding: 6px 12px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            text-shadow: none;
+        }
+
+        /* صندوق الإدخال التكنولوجي */
+        .terminal-input-bar {
+            padding: 20px;
+            background: rgba(8, 9, 16, 0.95);
+            border-top: 2px solid rgba(0, 243, 255, 0.2);
+            display: flex;
+            gap: 12px;
+        }
+
+        .terminal-field {
+            flex: 1;
+            background: #0f111a;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            color: var(--text-main);
+            padding: 14px;
+            border-radius: 6px;
+            outline: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .terminal-field:focus {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 12px rgba(0, 243, 255, 0.3), inset 0 0 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-transmit {
+            background: var(--neon-cyan);
+            color: #000;
+            border: none;
+            padding: 0 22px;
+            border-radius: 6px;
+            font-weight: bold;
             font-size: 0.9rem;
-            opacity: 0.4;
-            letter-spacing: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+            text-transform: uppercase;
         }
 
-        /* --- Responsive Tweaks --- */
-        @media (max-width: 768px) {
-            .brand-name { letter-spacing: 5px; }
-            .nav-btn { padding: 10px 15px; font-size: 0.7rem; }
-            .skills-mega-grid { grid-template-columns: 1fr; }
+        .btn-transmit:hover {
+            background: #fff;
+            box-shadow: 0 0 20px #fff;
+            transform: scale(1.02);
         }
 
+        /* الأنيميشنس */
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(12px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
     </style>
 </head>
-<body id="main-body">
+<body>
 
-    <canvas id="cyber-canvas"></canvas>
-
-    <div class="master-wrapper">
-        
-        <header class="hero-section">
-            <div class="profile-vault">
-                <img src="https://i.postimg.cc/FzTbSbB8/IMG-20251228-010014-886.webp" alt="B.M.Alaa" class="profile-img">
+    <div class="chat-frame">
+        <!-- الهيدر الاستخباراتي -->
+        <div class="chat-header">
+            <div class="system-status">
+                <div class="chat-title">QUANTUM_LINE // v2.0</div>
+                <div class="encryption-badge">تشفير محلي نشط 100%</div>
             </div>
-            
-            <h1 class="brand-name">B.M.Alaa</h1>
-            
-            <div class="typewriter-terminal" id="terminal-text"></div>
+            <button class="btn-purge" onclick="purgeSystem()">تطهير شامل</button>
+        </div>
 
-            <div class="data-status-bar">
-                <span>[ STATUS: SECURE ]</span>
-                <span>[ VERSION: 3.0.5 ]</span>
-                <span>[ LOC: ALGERIA ]</span>
-            </div>
-        </header>
+        <!-- ساحة عرض الشفرات (الرسائل) -->
+        <div class="display-area" id="displayArea">
+            <div class="msg-bubble sys-log">جدار الحماية مفعل بالكامل. البيانات تُخزن في الذاكرة المعزولة لجهازك الحالي فقط.</div>
+        </div>
 
-        <nav class="nav-anchor" id="navbar">
-            <button class="nav-btn active" data-target="skills">القدرات الفنية</button>
-            <button class="nav-btn" data-target="books">الأرشيف الأدبي</button>
-            <button class="nav-btn" data-target="projects">المشاريع النشطة</button>
-        </nav>
-
-        <section id="skills" class="section-container active">
-            <div class="skills-mega-grid">
-                
-                <div class="skill-nexus-card">
-                    <div class="icon-hexagon"><i class="fa-solid fa-user-secret"></i></div>
-                    <h3>الهندسة الاجتماعية</h3>
-                    <p>تحليل السلوك البشري واستخراج الثغرات النفسية. خبير في كشف أساليب الخداع والتحايل الرقمي وتأمين العنصر البشري داخل المنظومات الأمنية المعقدة.</p>
-                </div>
-
-                <div class="skill-nexus-card">
-                    <div class="icon-hexagon"><i class="fa-solid fa-code"></i></div>
-                    <h3>تطوير Python</h3>
-                    <p>بناء أدوات الأتمتة المخصصة، تطوير سكربتات اختبار الاختراق، والتعامل مع المكتبات المتقدمة لتحليل البيانات وتحسين الأداء البرمجي للمشاريع الأمنية.</p>
-                </div>
-
-                <div class="skill-nexus-card">
-                    <div class="icon-hexagon"><i class="fa-solid fa-shield-virus"></i></div>
-                    <h3>الأمن السيبراني</h3>
-                    <p>اختبار اختراق الشبكات والويب (Red Teaming)، إدارة المخاطر الرقمية، بناء جدران الحماية المتقدمة وتطوير استراتيجيات الردع ضد التهديدات المستمرة.</p>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="books" class="section-container">
-            <div class="book-layer">
-                <h4 style="font-family: var(--font-tech);">رواية خطايا السبعة</h4>
-                <p>عمل أدبي فلسفي يغوص في الصراعات الأخلاقية والنفسية للبشر في العصر الرقمي.</p>
-            </div>
-            <div class="book-layer">
-                <h4 style="font-family: var(--font-tech);">كتاب أنت في خطر</h4>
-                <p>دليل شامل للوعي الأمني يكشف تقنيات التجسس وكيفية حماية الهوية الرقمية.</p>
-            </div>
-            <div class="book-layer">
-                <h4 style="font-family: var(--font-tech);">كتاب أنا رجل الخفاء</h4>
-                <p>فلسفة التخفي الرقمي وتقنيات الحفاظ على الخصوصية المطلقة في عالم المراقبة.</p>
-            </div>
-        </section>
-
-        <section id="projects" class="section-container">
-            <div class="skills-mega-grid">
-                <div class="skill-nexus-card">
-                    <h3>Project Ghost</h3>
-                    <p>نظام تشغيل محمول وآمن يعتمد على تشفير عسكري لحماية البيانات الحساسة أثناء التنقل.</p>
-                </div>
-                <div class="skill-nexus-card">
-                    <h3>Commerce Core</h3>
-                    <p>محرك تحليل بيانات للتجارة الإلكترونية يربط بين الأمان السيبراني ونمو المشاريع.</p>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <div class="footer-logo">B.M.ALAA // G.3.0.5 // ACCESS_POINT_STABLE</div>
-            <p style="font-size: 0.6rem; margin-top: 10px; opacity: 0.3;">© 2026 جميع الحقوق محفوظة لمهندس النظام</p>
-        </footer>
-
+        <!-- وحدة بث البيانات (الكتابة) -->
+        <div class="terminal-input-bar">
+            <input type="text" id="terminalInput" class="terminal-field" placeholder="أدخل رسالتك السرية هنا برمز الآلة..." onkeypress="handleKey(event)">
+            <button class="btn-transmit" onclick="transmitData()">إرسال</button>
+        </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            const body = document.getElementById('main-body');
-            const navButtons = document.querySelectorAll('.nav-btn');
-            const sections = document.querySelectorAll('.section-container');
+        const displayArea = document.getElementById('displayArea');
+        const terminalInput = document.getElementById('terminalInput');
+        let userToggle = true; 
 
-            // 1. نظام التبديل بين الأقسام (Section Switcher)
-            navButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const targetId = btn.getAttribute('data-target');
-                    
-                    // تحديث الأزرار
-                    navButtons.forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-
-                    // تحديث الأقسام
-                    sections.forEach(s => s.classList.remove('active'));
-                    const targetSection = document.getElementById(targetId);
-                    if(targetSection) targetSection.classList.add('active');
-                });
-            });
-
-            // 2. نظام التغيير الآلي عند التمرير (Auto Scroll Red Mode)
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 250) {
-                    body.classList.add('red-mode');
-                } else {
-                    body.classList.remove('red-mode');
-                }
-            });
-
-            // 3. محرك الماتريكس المتقدم (Matrix Engine)
-            const canvas = document.getElementById('cyber-canvas');
-            const ctx = canvas.getContext('2d');
-            let width = canvas.width = window.innerWidth;
-            let height = canvas.height = window.innerHeight;
-
-            const alphabet = "B.M.ALAA 010101 SECURITY SYSTEM ACCESS";
-            const fontSize = 16;
-            const columns = width / fontSize;
-            const drops = Array.from({ length: columns }).fill(1);
-
-            function drawMatrix() {
-                ctx.fillStyle = "rgba(5, 5, 7, 0.1)";
-                ctx.fillRect(0, 0, width, height);
-                
-                // جلب اللون الحالي من المتغيرات البرمجية
-                ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--primary');
-                ctx.font = fontSize + "px 'Fira Code'";
-
-                drops.forEach((y, i) => {
-                    const text = alphabet[Math.floor(Math.random() * alphabet.length)];
-                    ctx.fillText(text, i * fontSize, y * fontSize);
-                    if (y * fontSize > height && Math.random() > 0.975) drops[i] = 0;
-                    drops[i]++;
-                });
+        // استدعاء البيانات من الذاكرة الرام المحلية للمتصفح فور الفتح
+        window.onload = function() {
+            const cachedLogs = localStorage.getItem('shadow_chat_vault');
+            if (cachedLogs) {
+                displayArea.innerHTML = cachedLogs;
+                autoScroll();
             }
-            setInterval(drawMatrix, 50);
+        };
 
-            // 4. محرك الكتابة (Typewriter)
-            new Typed('#terminal-text', {
-                strings: [
-                    '> INITIALIZING_CORE...',
-                    '> LOADING_ALAA_DNA...',
-                    '> ACCESS_GRANTED_G.3.0.5',
-                    '> SYSTEM_STATUS: OPERATIONAL'
-                ],
-                typeSpeed: 50,
-                backSpeed: 30,
-                loop: true
-            });
+        function transmitData() {
+            const rawText = terminalInput.value.trim();
+            if (rawText === '') return;
 
-            // تحديث أبعاد الكانفاس عند تغيير حجم الشاشة
-            window.addEventListener('resize', () => {
-                width = canvas.width = window.innerWidth;
-                height = canvas.height = window.innerHeight;
-            });
-        });
+            const msgNode = document.createElement('div');
+            msgNode.classList.add('msg-bubble');
+            
+            // محاكاة متبادلة لإرسال محلي تجريبي مريح ومبهر
+            if (userToggle) {
+                msgNode.classList.add('incoming');
+            } else {
+                msgNode.classList.add('outgoing');
+            }
+            
+            msgNode.innerText = rawText;
+            displayArea.appendChild(msgNode);
+            
+            // تحديث مخزن البيانات المشفرة محلياً
+            localStorage.setItem('shadow_chat_vault', displayArea.innerHTML);
+            
+            terminalInput.value = '';
+            userToggle = !userToggle; 
+            autoScroll();
+        }
+
+        function handleKey(e) {
+            if (e.key === 'Enter') {
+                transmitData();
+            }
+        }
+
+        function autoScroll() {
+            displayArea.scrollTop = displayArea.scrollHeight;
+        }
+
+        // مسح تام وفوري لقاعدة البيانات المحلية دون ترك أي أثر بكسل
+        function purgeSystem() {
+            if (confirm("هل تريد تفعيل بروتوكول التطهير الشامل ومسح الذاكرة؟")) {
+                localStorage.removeItem('shadow_chat_vault');
+                displayArea.innerHTML = '<div class="msg-bubble sys-log">تم تطهير النظام بالكامل وصفرت السجلات.</div>';
+            }
+        }
     </script>
 </body>
 </html>
